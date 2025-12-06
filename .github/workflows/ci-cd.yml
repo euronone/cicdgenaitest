@@ -31,11 +31,7 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    # Only deploy if on main/master AND secrets are configured
-    if: |
-      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') &&
-      secrets.EC2_HOST != '' &&
-      secrets.EC2_SSH_PRIVATE_KEY != ''
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     
     steps:
     - uses: actions/checkout@v3
